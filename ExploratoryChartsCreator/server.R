@@ -15,7 +15,19 @@ getDataset <- function(dataset) {
   if(dataset == "airquality") {
     ds <-  airquality
   }
+  else if (dataset == "faithful") {
+    ds <- faithful
+  }
+  
   ds
+}
+
+getVariable <- function(varname, dataset) {
+  if(is.null(varname) || !(varname %in% names(dataset))) {
+    varname <- names(dataset)[1]
+  }
+  dataset[[varname]]
+  
 }
 
 # Define server logic required to draw that chart
@@ -29,24 +41,19 @@ shinyServer(function(input, output) {
     selectInput("y", "Y axis variable:", names(getDataset(input$dataset))) 
   })
 
+  output$colorSelector <- renderUI({
+    selectInput("color", "Color variable:", names(getDataset(input$dataset))) 
+  })
+
   output$xyPlot <- renderPlot({
     
     ds <- getDataset(input$dataset)
 
-    xvar <- input$x
-    if(is.null(xvar) || !(xvar %in% names(ds))) {
-      xvar <- names(ds)[1]
-    }
-
-    yvar <- input$y  
-    if(is.null(yvar) || !(yvar %in% names(ds))) {
-      yvar <- names(ds)[1]
-    }
-
-    x <- ds[[xvar]]
-    y <- ds[[yvar]]
+    x <- getVariable(input$x, ds)
+    y <- getVariable(input$y, ds)
+    color <-input$color
     
-    plot(x,y)
+    plot(x,y, col = color)
 
     if(input$showregression) {
       fit <- lm(y ~ x)

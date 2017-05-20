@@ -13,21 +13,30 @@ library(shiny)
 shinyUI(fluidPage(
   
   # Application title
-  titlePanel("Generic Dataset Chart"),
+  titlePanel("Exploratory Chart Creator"),
   
   # Sidebar with a slider input for number of bins 
   sidebarLayout(
     sidebarPanel(
-      selectInput("dataset", "Dataset:", c("mtcars","airquality")),
+      selectInput("dataset", "Dataset:", c("mtcars","airquality", "faithful")),
       uiOutput("xSelector"),
       uiOutput("ySelector"),
+      selectInput("color", "Markers Color:", c("blue","red", "black", "purple")),
       checkboxInput("showregression", "Plot Regression Line", FALSE)
-       
     ),
-    
     # Show a plot of the generated distribution
     mainPanel(
-       plotOutput("xyPlot")
+      div(
+        p("Expolratory Charts Creator is a Shiny application that allows you to create exploratory charts on some of R's most famous datasets"),
+        p("Using the controls on the lef hand side you can"),
+        tags$ul(
+          tags$li("select which dataset you want use"),
+          tags$li("select which varaiables you want to plat"),
+          tags$li("select the color of the markers"),
+          tags$li("specify whether you want a regression line to be plotted")
+        )
+      ),
+      plotOutput("xyPlot")
     )
   )
 ))
