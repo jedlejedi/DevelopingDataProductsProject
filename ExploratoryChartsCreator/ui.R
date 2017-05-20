@@ -34,9 +34,11 @@ shinyUI(fluidPage(
           tags$li("select which varaiables you want to plat"),
           tags$li("select the color of the markers"),
           tags$li("specify whether you want a regression line to be plotted")
-        )
+        ),
+        p("The application will automatically update the chart everytie one of the input is changed. It will also fit a linear model through the selected variable and display the calculated coefficients below the charts")
       ),
-      plotOutput("xyPlot")
+      plotOutput("xyPlot"),
+      textOutput("coefs")
     )
   )
 ))

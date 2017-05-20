@@ -1,0 +1,40 @@
+Exploratory Chart Creator
+========================================================
+author: Julien Lafontaine
+date: 20 May 2017
+autosize: true
+
+Overview
+========================================================
+
+The Exploratory Chart Creator application allows you to very quickly and easily create exploratory charts for some of datasets in R's dataset package. The application was build using Shiny for the course project on the "Developing Data Science" course on Coursera which is part of John Hopkins Universtity Data Science Specialisation.
+
+User Guide
+========================================================
+
+The application is very simple. Using the controls on the left hand side you can:
+- select which dataset you want use
+- select which variables you want to plot
+- elect the color of the markers
+- specify whether you want a regression line to be plotted
+
+The application will automatically update the chart everytie one of the input is changed. 
+
+Calcuations
+========================================================
+
+The application also fits a linear model through the selected variable and display the calculated coefficients below the charts. The code sample below shows the calculation performed using the mtcars dataset as an example when the mpg and wt variable are selected.
+
+```{r cars, echo = TRUE}
+  x <- mtcars$mpg
+  y <- mtcars$wt
+  fit <- lm(y ~ x)
+  summary(fit)$coefficients[,1]
+```
+
+Possible Enhancements
+========================================================
+
+This application is quite basic and there are a number of enhancements that could be made:
+- We could add more dataset
+- We shoud also give the user better control over the appearance of the charts

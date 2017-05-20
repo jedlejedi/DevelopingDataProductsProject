@@ -30,6 +30,12 @@ getVariable <- function(varname, dataset) {
   
 }
 
+
+getCoefs <- function(x , y){
+  fit <- lm(y ~ x)
+  summary(fit)$coefficients[,1]
+}
+
 # Define server logic required to draw that chart
 shinyServer(function(input, output) {
    
@@ -56,13 +62,16 @@ shinyServer(function(input, output) {
     plot(x,y, col = color)
 
     if(input$showregression) {
-      fit <- lm(y ~ x)
-      a <- summary(fit)$coefficients[1,1]
-      b <- summary(fit)$coefficients[2,1]
       
-      abline(a = a, b = b)
+      coefs <- getCoefs(x,y)
+      abline(a = coefs[1], b = coefs[2])
     }
     
+  })
+  
+  output$coefs <- renderText({
+    coefs <- getCoefs(x,y)
+    paste("y = ", coefs[2], " * x + ", coefs[1])
   })
   
 })
