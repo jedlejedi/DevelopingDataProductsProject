@@ -7,7 +7,7 @@ autosize: true
 Overview
 ========================================================
 
-The Exploratory Chart Creator application allows you to very quickly and easily create exploratory charts for some of datasets in R's dataset package. The application was build using Shiny for the course project on the "Developing Data Science" course on Coursera which is part of John Hopkins Universtity Data Science Specialisation.
+The Exploratory Chart Creator application allows you to very quickly and easily create exploratory charts for some of the datasets in R's dataset package. The application was built using Shiny for the course project of the "Developing Data Science" course on Coursera which is part of John Hopkins University Data Science Specialisation.
 
 User Guide
 ========================================================
@@ -15,15 +15,15 @@ User Guide
 The application is very simple. Using the controls on the left hand side you can:
 - select which dataset you want use
 - select which variables you want to plot
-- elect the color of the markers
+- select the color of the markers
 - specify whether you want a regression line to be plotted
 
-The application will automatically update the chart everytie one of the input is changed. 
+The application will automatically update the chart every time one of the input is changed. 
 
 Calcuations
 ========================================================
 
-The application also fits a linear model through the selected variable and display the calculated coefficients below the charts. The code sample below shows the calculation performed using the mtcars dataset as an example when the mpg and wt variable are selected.
+The application also fits a linear model through the selected variables and displays the calculated coefficients below the charts. The code sample below shows the calculations performed using the mtcars dataset as an example when the mpg and wt variables are selected.
 
 
 ```r
@@ -42,5 +42,5 @@ Possible Enhancements
 ========================================================
 
 This application is quite basic and there are a number of enhancements that could be made:
-- We could add more dataset
-- We shoud also give the user better control over the appearance of the charts
+- We could add more datasets
+- We shoud also give the user better control over the appearance of the charts e.g. show/hide legend
